@@ -1,0 +1,46 @@
+{% load static %}
+<header style="border-bottom: 1px solid #eee;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color: #eee;">Fossee</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"  style="color: #eee;">Home <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"  style="color: #eee;">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a style="color: #eee;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div>
+                            <li></li>
+                            <li></li>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
+            <li class="nav navbar-nav navbar-right">
+                <button data-toggle="modal" data-target="#signupModal" class="signup-btn btn btn-dark" type="button" name="button">Signup</button>
+            </li>
+            <li class="nav navbar-nav navbar-right">
+                    <button data-toggle="modal" data-target="#loginpModal" class="login-btn btn btn-dark" type="button" name="button">Log in</button>
+            </li>
+        </div>
+    </nav>
+
+</header>
