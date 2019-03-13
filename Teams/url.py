@@ -7,5 +7,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Teams, name='teams'),
- 
+    url('tasksID/',include('Tasks.url')),
+   
 ]

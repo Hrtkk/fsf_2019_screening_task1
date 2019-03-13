@@ -10,8 +10,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     path('usersAuth/',include('usersAuth.url')),
     path('usersAuth/', include('django.contrib.auth.urls')),
-    url('Tasks/',include('Tasks.url')),
-    url('Teams/',include('Teams.url')),
+    url('teams/',include('Teams.url')),
     url('admin/', admin.site.urls),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

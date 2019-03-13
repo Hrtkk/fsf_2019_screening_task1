@@ -7,5 +7,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.TasksView, name='taskview'),
- 
+    
 ]

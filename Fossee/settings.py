@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms'
 ]
 
-# AUTH_USER_MODEL = 'usersAuth.User'           # will change built in user model to custom user
+AUTH_USER_MODEL = 'usersAuth.User'           # will change built in user model to custom user
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

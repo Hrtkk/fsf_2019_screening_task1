@@ -1,0 +1,59 @@
+#sidebar-wrapper{
+    z-index: 1;   
+    background: #2c3e50;
+    border: 2px solid red;
+    opacity: 0.9;
+}
+
+/* main content */
+#page-content-wrapper{
+    width: 200%;
+    padding: 15px;
+    border: 5px solid green;
+}
+
+.sidebar-nav{
+    padding:0;
+    list-style: none;
+
+}
+.sidebar-nav li{
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a{
+    display: block;
+    text-decoration: none;
+    color: #ddd;
+}
+
+.sidebar-nav li a:hover{
+    background: #16A085;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
