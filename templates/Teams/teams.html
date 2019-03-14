@@ -1,8 +1,8 @@
 
-{% extends 'base_layout.html' %}
-{% block teams %}
+{% include 'base_layout.html' %}
+{% block Team %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row teams-view">
         <div class="col-2" id="sidebar-wrapper">
             <div class="col">
                 <div>
@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <h5>Teams</h5>
-                    <button class="btn-primary"><span>+</span>Create Teams</button>        
+                    <button class="btn-primary create-team-btn"><span>+</span>Create Teams</button>        
                 </div>
                
 
@@ -24,7 +24,8 @@
                 <div class="row">
                     <ul>
                         <li>Main content</li>
-
+<p>{{ var1}}</p>
+<p>{{ var2}}</p>
                     </ul>
 
                 </div>
@@ -49,4 +50,7 @@
     </div> 
 </div>
 
-{% endblock teams %}
+{% endblock Team %}
+<div class="footer">
+    {% include "_footer.html" %}
+  </div>

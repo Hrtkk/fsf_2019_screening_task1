@@ -12,7 +12,7 @@ class SignUpView(PassRequestMixin, SuccessMessageMixin, generic.CreateView):
     form_class = CustomUserCreationForm
     template_name = 'usersAuth/signup.html'
     success_message = 'Success: Sign up succeeded. You can now Log in.'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('Teams:teamsView')
 
 
 class CustomLoginView(LoginAjaxMixin, SuccessMessageMixin, LoginView):

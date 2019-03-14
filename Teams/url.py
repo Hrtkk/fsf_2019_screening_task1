@@ -6,6 +6,6 @@ from . import views
 
 app_name = 'Teams'
 urlpatterns = [
-    url('', views.IndexView.as_view(), name='teamsView'),
-    
+    url(r'^$', views.IndexView.as_view(), name='teamsView'),
+    url(r'^createTeam/$',views.CreateTeam.as_view(),name='createTeam'),
 ]

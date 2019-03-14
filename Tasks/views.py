@@ -27,7 +27,7 @@ class CreateTask(PassRequestMixin, SuccessMessageMixin,
     form_class = CustomTaskCreationForm
     template_name = 'Tasks/taskCreatePop.html'
     success_message = 'Success: Sign up succeeded. You can now Log in.'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('taskView')
 
 
 class TaskDetails():

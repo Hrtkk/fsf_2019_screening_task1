@@ -4,9 +4,10 @@ from django.views.generic.base import TemplateResponseMixin, ContextMixin,View
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render_to_response
-from .forms import CustomTaskCreationForm
+from .forms import CustomTeamCreationForm
 from .models import TeamList
 from bootstrap_modal_forms.mixins import PassRequestMixin
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 class IndexView(View):
@@ -24,11 +25,10 @@ class IndexView(View):
 
 class CreateTeam(PassRequestMixin, SuccessMessageMixin,
                      CreateView):
-    form_class = CustomTaskCreationForm
-    template_name = 'Tasks/taskCreatePop.html'
+    form_class = CustomTeamCreationForm
+    template_name = 'Teams/teamCreatePop.html'
     success_message = 'Success: Sign up succeeded. You can now Log in.'
-    success_url = reverse_lazy('index')
-
+    success_url = reverse_lazy('Teams:teamsView')
 
 class TeamDetails():
     template_name = 'Tasks/TaskDetailView.html'

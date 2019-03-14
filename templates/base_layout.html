@@ -24,22 +24,8 @@
         <div class="item-header">
             {% include "_header.html" %}
         </div>
-        <div class="item-body">
-            <div class="index-view">
-              {% block index %}{% endblock index %}
           
-            </div>
-            <div class="teams-view">
-              {% block teams%}{% endblock teams%}
-            </div>
-            <div class="tasks-view">
-                {% block Tasks %}{% endblock Tasks %}
-            </div>
-        </div>
-            
-        <div class="footer">
-          {% include "_footer.html" %}
-        </div>
+        
     </div>
     {% block scripts %}
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -58,6 +44,7 @@
         $(".login-btn").modalForm({formURL: "{% url 'usersAuth:login' %}"});
         $(".signup-btn").modalForm({formURL: "{% url 'usersAuth:signup' %}"});
         $(".create-task-btn").modalForm({formURL: "{% url 'Tasks:createTask' %}"});
+        $(".create-team-btn").modalForm({formURL: "{% url 'Teams:createTeam' %}"});
   
       });
     </script>

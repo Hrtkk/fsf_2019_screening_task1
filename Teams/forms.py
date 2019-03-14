@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django import forms
 
-class CustomTaskCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, forms.ModelForm):
+class CustomTeamCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, forms.ModelForm):
     class Meta:
         model = Team
         exclude = ['timestamp']

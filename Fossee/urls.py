@@ -4,17 +4,16 @@ from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from . import settings
-
+from django.views.generic import RedirectView
 
 app_name='Fossee'
 
 urlpatterns = [
-    # url(r'^$', views.index, name='index'),
-    url(r'^$',include('Teams.url',namespace='teams')),
-    
+    url(r'^$', RedirectView.as_view(url='/teams/'),name='index'),
+    path('teams/tasksID/',include('Tasks.url',namespace='tasks')),
+    path('teams/',include('Teams.url',namespace='team')),
     path('usersAuth/',include('usersAuth.url')),
-    path('usersAuth/', include('django.contrib.auth.urls')),
-    url('teams/tasksID/',include('Tasks.url',namespace='tasks')),
     url('admin/', admin.site.urls),
+    path('usersAuth/', include('django.contrib.auth.urls')),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
