@@ -4,9 +4,8 @@ from django.conf.urls.static import static
 from django.urls import path
 from . import views
 
-
+app_name = 'Teams'
 urlpatterns = [
-    url(r'^$', views.Teams, name='teams'),
-    url('tasksID/',include('Tasks.url')),
-   
+    url('', views.IndexView.as_view(), name='teamsView'),
+    
 ]

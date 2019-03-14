@@ -1,13 +1,29 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
-class Tasks(models.Model):
-    Title = models.CharField(max_length=100)
-    Description = models.CharField(max_length=100)
-    Assignee = models.CharField(max_length=30)
-    # Status = models.
-    # comments = models.
-    # favorite = models.BooleanField()
-    
-class comments(models.Model):
+
+
+class Comments(models.Model):
     comments = models.CharField(max_length=30)
+
+# class Status(models.Model):
+#     StatusTitle = models.CharField(max_length=30)
+
+class Tasks(models.Model):
+    STATUS_TYPE = (
+        (1,'Planning'),
+        (2,'Progressing'),
+        (3,'Done'),
+    )
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    assignee = models.CharField(max_length=30)
+    status = models.PositiveIntegerField(choices=STATUS_TYPE)
+    # add_Comments = models.ManyToManyField(Comments)
+    favorite = models.BooleanField(default=False)
+    # members = models.ForeignKey()
+    timestamp = models.DateField(auto_now_add=True, auto_now=False)
+    
+class TaskList(models.Model):
+    Tasks = models.ManyToManyField(Tasks)
+    

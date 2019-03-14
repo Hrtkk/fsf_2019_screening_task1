@@ -2,83 +2,25 @@
 {% extends 'base_layout.html' %}
 {% block tasks %}
 <div class="container-fluid">
-    <div class="row">
-
-      <div class="col-3">
-            <div class="card">   
-                    <ul class="list-group">
-            
-                       
+        <div class="col-3">
+                <div class="card">   
+                    <ul class="list-group">            
                         <h4>Create Tasks</h4>
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">Card Title</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                      
+                                <div class="Creat-Task-btn">
+                                    <button data-toggle="modal" data-target="#createTaskModal" class="create-task-btn btn btn-dark" type="button" name="button">Create Tasks</button>
+                                </div>
+                                
                             </div>
                         </div>
-                        </ul>
-                    </div>
-    </div>
-
-    <div class="col-3">  
-            <div class="card">   
-                    <ul class="list-group">
-            
-                       
-                        <h4>Planned</h4>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        </ul>
-                    </div>
-    </div>
-
-    <div class="col-3">  
-            <div class="card">   
-                    <ul class="list-group">
-            
-                       
-                        <h4>Progress</h4>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Card Title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        </ul>
-                    </div>
-    </div>
-
-    <div class="col-3">
-        <div class="card">   
-        <ul class="list-group">
-            <h4>Done</h4>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card Title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    </ul>
                 </div>
-            </div>
-            </ul>
         </div>
-        </div>
-
-    </div> 
-</div>
-
+    </div>
+    
 {% endblock tasks %}

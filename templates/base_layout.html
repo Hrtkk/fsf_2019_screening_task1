@@ -33,7 +33,7 @@
               {% block teams%}{% endblock teams%}
             </div>
             <div class="tasks-view">
-                {% block tasks %}{% endblock tasks %}
+                {% block Tasks %}{% endblock Tasks %}
             </div>
         </div>
             
@@ -57,6 +57,7 @@
       $(function(){
         $(".login-btn").modalForm({formURL: "{% url 'usersAuth:login' %}"});
         $(".signup-btn").modalForm({formURL: "{% url 'usersAuth:signup' %}"});
+        $(".create-task-btn").modalForm({formURL: "{% url 'Tasks:createTask' %}"});
   
       });
     </script>
