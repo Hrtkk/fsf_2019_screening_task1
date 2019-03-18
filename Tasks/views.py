@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.contrib import auth
+from django.shortcuts import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView, CreateView
 from django.views.generic.base import TemplateResponseMixin, ContextMixin,View
 from django.urls import reverse_lazy
@@ -9,17 +12,22 @@ from .models import TaskList
 from bootstrap_modal_forms.mixins import PassRequestMixin
 # Create your views here.
 
+
 class TasksView(View):
     model = TaskList
     template_name = 'Tasks/TasksView.html'
     var1 = 0
     var2 = 1
-    
+
+    print("Hello")
     def get(self, request, *args, **kwargs):
         context = locals()
+        print(request.GET)
+        print("Hello")
         context['var1'] = self.var1
         context['var2'] = self.var2
         return render_to_response(self.template_name, context)
+
 
 
 class CreateTask(PassRequestMixin, SuccessMessageMixin,

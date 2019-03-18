@@ -18,6 +18,17 @@ class IndexView(View):
     
     def get(self, request, *args, **kwargs):
         context = locals()
+        print(request.session)
+        print(request.session['_auth_user_id'],request.session['_auth_user_backend'],request.session['_auth_user_hash'])   # _auth_user_id, _auth_user_backend, _auth_user_hash
+        print("TeamsIndex")
+        context['var1'] = self.var1
+        context['var2'] = self.var2
+        return render_to_response(self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        context = locals()
+        print(request.POST)
+
         context['var1'] = self.var1
         context['var2'] = self.var2
         return render_to_response(self.template_name, context)
