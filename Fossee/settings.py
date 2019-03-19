@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/teams/'
 # LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Fossee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'Fossee',
+        'NAME': 'fossee2019',
     }
 }
 
@@ -111,8 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LOGIN_REDIRECT_URL = '/'
-# LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

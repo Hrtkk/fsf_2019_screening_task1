@@ -12,8 +12,24 @@
                     </ul>
                 </div>
                 <div>
+                   
+                    {% if user.is_authenticated %}
                     <h5>Teams</h5>
-                    <button class="btn-primary create-team-btn"><span>+</span>Create Teams</button>        
+                    <button type="submit" class=" create-team-btn btn-primary"><span>+</span>Create Teams</button>        
+                    
+
+
+                    {% for item in AdminTeams %}
+                    <div>
+                        <button type="button" class="btn-red">{{item.title}}</button>
+                    </div>
+                    {% endfor %}
+                    {% for item in MemberTeams %}
+                    <div>
+                        <button type="button" class="btn-dark">{{item.title}}</button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
                
 
@@ -39,11 +55,6 @@
                         </ul>
                     </div>
                     <div>
-                        <h5>Teams</h5>
-                        <button class="btn-primary"><span>+</span>Create Teams</button>        
-                    </div>
-                   
-    
                 </div>
             </div>
     </div> 

@@ -10,9 +10,9 @@ app_name='Fossee'
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/teams/'),name='index'),
-    path('teams/tasksID/',include('Tasks.url',namespace='tasks')),
-    path('teams/',include('Teams.url',namespace='team')),
-    path('usersAuth/',include('usersAuth.url')),
+    path('teams/tasksID/',include('Tasks.urls',namespace='Tasks')),
+    path('teams/',include('Teams.urls',namespace='Teams')),
+    path('usersAuth/',include('usersAuth.urls',namespace='Accounts')),
     url('admin/', admin.site.urls),
     path('usersAuth/', include('django.contrib.auth.urls')),
 

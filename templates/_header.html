@@ -34,12 +34,13 @@
                 </form>
             </div>
             {% if user.is_authenticated %}
-            <li class="nav navbar-nav navbar-right">
-               <label for="username">{{user.username }}</label>
-            </li>
-            <li class="nav navbar-nav navbar-right">
-                <button class="logout-btn btn btn-dark" type="button" name="button">Log out</button>
-            </li>
+            <div class="navbar navbar-inverse">
+                <div class="container-fluid"></div> 
+                <ul class="nav">    
+                    <li style="margin: 2px"><a herf='/' style="color:blue">{{user.username }}</a></li>
+                    <li style="margin: 2px"><a href="{% url 'Accounts:logout' %}" style="color:blue">  Log out</a></li>
+                </ul> 
+            </div>
             {% else %}
             <li class="nav navbar-nav navbar-right">
                 <button data-toggle="modal" data-target="#signupModal" class="signup-btn btn btn-dark" type="button" name="button">Signup</button>
