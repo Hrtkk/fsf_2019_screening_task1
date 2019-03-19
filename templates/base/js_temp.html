@@ -13,7 +13,7 @@
     {% block extrascripts %}
     <script type="text/javascript">
       $(function(){
-        $(".login-btn").modalForm({formURL: "{% url 'usersAuth:LogIn' %}"});
+        $(".login-btn").modalForm({formURL: "{% url 'usersAuth:login' %}"});
         $(".signup-btn").modalForm({formURL: "{% url 'usersAuth:signup' %}"});
         $(".create-task-btn").modalForm({formURL: "{% url 'Tasks:createTask' %}"});
         $(".create-team-btn").modalForm({formURL: "{% url 'Teams:createTeam' %}"});

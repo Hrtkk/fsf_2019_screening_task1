@@ -10,7 +10,7 @@ from .admin import UserCreationForm
 
 class CustomLoginView(LoginView):
     form_class = CustomLoginForm
-    template_name = 'login.html'
+    template_name = 'usersAuth/login.html'
     success_url = '/userAuth/profile'
     default_next = '/userAuth/profile'
 
@@ -26,16 +26,16 @@ class CustomLoginView(LoginView):
             print("Hey you are logged in")
             # Redirect to a success page.
             request.session['username'] = username
-            return redirect('/teams/createTeam')
+            return redirect('/teams/')
 
         return redirect('/userAuth/signup')
 
 
 class CustomSignupView(CreateView):
     form_class = UserCreationForm
-    template_name = 'signup.html'
-    success_url = '/userAuth/'
-    default_next = '/login'
+    template_name = 'usersAuth/signup.html'
+    success_url = '/teams/'
+    default_next = '/teams/'
 
     def post(self,request, *args, **kwargs):
         form = UserCreationForm(request.POST)
@@ -44,10 +44,10 @@ class CustomSignupView(CreateView):
             print("Form is valid")
             form.save()
 
-        return redirect('/usersAuth/login')
+        return redirect('/teams')
 
 class ProfileView(TemplateView):
-    template_name = 'profile.html'
+    template_name = 'usersAuth/profile.html'
     context = {
         'hello':'data'
     }

@@ -11,27 +11,27 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 class IndexView(View):
-    model = TeamList
+    # model = TeamList
     template_name = 'Teams/teams.html'
-    var1 = 0
-    var2 = 1
+    # var1 = 0
+    # var2 = 1
     
     def get(self, request, *args, **kwargs):
-        context = locals()
-        print(request.session)
-        print(request.session['_auth_user_id'],request.session['_auth_user_backend'],request.session['_auth_user_hash'])   # _auth_user_id, _auth_user_backend, _auth_user_hash
+        # context = locals()
+        # print(request.session)
+        # print(request.session['_auth_user_id'],request.session['_auth_user_backend'],request.session['_auth_user_hash'])   # _auth_user_id, _auth_user_backend, _auth_user_hash
         print("TeamsIndex")
-        context['var1'] = self.var1
-        context['var2'] = self.var2
-        return render_to_response(self.template_name, context)
+        # context['var1'] = self.var1
+        # context['var2'] = self.var2
+        return render(request, self.template_name)
 
-    def post(self, request, *args, **kwargs):
-        context = locals()
-        print(request.POST)
+    # def post(self, request, *args, **kwargs):
+    #     context = locals()
+    #     print(request.POST)
 
-        context['var1'] = self.var1
-        context['var2'] = self.var2
-        return render_to_response(self.template_name, context)
+    #     context['var1'] = self.var1
+    #     context['var2'] = self.var2
+    #     return render_to_response(self.template_name, context)
 
 
 class CreateTeam(PassRequestMixin, SuccessMessageMixin,
