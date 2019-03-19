@@ -1,10 +1,22 @@
-from .models import Tasks
-from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.views import generic
 from django import forms
+from .models import Tasks
 
-class CustomTaskCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, forms.ModelForm):
+
+class Comments(forms.ModelForm):
+    author = forms.CharField(max_length=255)
+    comments = forms.CharField(max_length=255)
+
+
+CHOICES = (
+    ('Planned', 'Planned'),
+    ('Progressing', 'Progressing'),
+    ('Done', 'Done'),
+)
+
+
+class CustomTaskCreateForm(forms.ModelForm):
     class Meta:
         model = Tasks
-        exclude = ['timestamp']
+        fields = ['title','description','status']
+
+

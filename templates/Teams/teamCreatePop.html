@@ -1,5 +1,5 @@
 {% load widget_tweaks %}
-<form action="post" action="">
+<form method="post" action="{% url 'team:createTeam' %}">
 {% csrf_token %}
 <div class="modal-header">
     <h3 class="modal-title">Tasks</h3>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="submit-btn btn btn-primary" formnovalidate="formnovalidate">Create</button>
+        <button type="submit" class="submit-btn btn btn-primary" formnovalidate="formnovalidate">Create</button>
     </div>
 
 </form>

@@ -1,11 +1,8 @@
-from django.contrib import admin
-from django.conf.urls import url, include
-from django.conf.urls.static import static
-from django.urls import path
-from . import views
+from django.urls.conf import path
+from .views import CreateTask, TaskDetailView
 
-app_name='Tasks'
+app_name = 'Task'
 urlpatterns = [
-    path('', views.TasksView.as_view(), name='taskview'),
-    path(r'createTask/',views.CreateTask.as_view(),name="createTask")
+    path('createTask', CreateTask.as_view(), name='CreateTask'),
+    path('TaskDetail', TaskDetailView.as_view(), name='TaskDetail'),
 ]

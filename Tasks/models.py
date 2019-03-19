@@ -1,29 +1,26 @@
 from django.db import models
+from Teams.models import Teams
 from django.contrib.auth import get_user_model
 # Create your models here.
+User = get_user_model()
 
-
-class Comments(models.Model):
-    comments = models.CharField(max_length=30)
-
-# class Status(models.Model):
-#     StatusTitle = models.CharField(max_length=30)
 
 class Tasks(models.Model):
-    STATUS_TYPE = (
-        (1,'Planning'),
-        (2,'Progressing'),
-        (3,'Done'),
+    title = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    teams = models.ForeignKey(
+        Teams,
+        on_delete=models.CASCADE,
+        related_name='Tasks',
     )
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
-    assignee = models.CharField(max_length=30)
-    status = models.PositiveIntegerField(choices=STATUS_TYPE)
-    # add_Comments = models.ManyToManyField(Comments)
-    favorite = models.BooleanField(default=False)
-    # members = models.ForeignKey()
-    timestamp = models.DateField(auto_now_add=True, auto_now=False)
-    
-class TaskList(models.Model):
-    Tasks = models.ManyToManyField(Tasks)
-    
+    STATUS_CHOICES = (
+        ('Planning', 'Planning'),
+        ('Progressing', 'Progressing'),
+        ('Done', 'Done'),
+    )
+    status = models.CharField(max_length=255, choices=STATUS_CHOICES)
+    creator = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='Teams'
+    )

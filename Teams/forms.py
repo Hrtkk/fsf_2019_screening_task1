@@ -1,10 +1,19 @@
-from .models import Team
-from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.views import generic
+from .models import Teams
 from django import forms
+from django.contrib.auth import get_user_model
 
-class CustomTeamCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, forms.ModelForm):
+User = get_user_model()
+
+
+class CustomTeamCreationForm(forms.ModelForm):
+    members = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    date = forms.DateTimeField(required=False)
+
     class Meta:
-        model = Team
-        exclude = ['timestamp']
+        model = Teams
+        fields = ['title', 'description']
+

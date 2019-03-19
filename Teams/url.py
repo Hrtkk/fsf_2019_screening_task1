@@ -6,6 +6,12 @@ from . import views
 
 app_name = 'Teams'
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='teamsView'),
-    url(r'^createTeam/$',views.CreateTeam.as_view(),name='createTeam'),
+    path('', views.IndexView.as_view(),name='teamsView'),
+    path('createTeam', views.CreateTeams.as_view(), name='createTeam'),
+    path('teamList', views.TeamListView.as_view(), name='TeamList'),
+    path('teamDetail', views.TeamDetailView.as_view(), name='TeamDetail'),
+    # path('tasks/', include('Tasks.urls', namespace='Task')),
+   
+
 ]
+
