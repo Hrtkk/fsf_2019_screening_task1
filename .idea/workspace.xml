@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ff1e91f-f548-419d-a2e5-b63ab8f84a35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base/css.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base/js_temp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usersAuth/mixins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fossee/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fossee/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tasks/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tasks/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teams/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Teams/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Teams/teams.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Teams/teams.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usersAuth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usersAuth/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usersAuth/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersAuth/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usersAuth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersAuth/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usersAuth/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersAuth/url.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usersAuth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersAuth/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,12 +12,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tasks/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-310">
+            <state>
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Fossee2019/Tasks/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Fossee2019/Tasks/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,6 +111,8 @@
         <option value="$PROJECT_DIR$/../../teams/views.py" />
         <option value="$PROJECT_DIR$/../../teams/forms.py" />
         <option value="$PROJECT_DIR$/../../teams/models.py" />
+        <option value="$PROJECT_DIR$/usersAuth/hgh.py" />
+        <option value="$PROJECT_DIR$/../Fossee2019/Tasks/views.py" />
       </list>
     </option>
   </component>
@@ -113,13 +124,14 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <showMembers Scope="false" ProjectPane="false" />
       <compactDirectories Scope="true" />
       <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Default Changelist'; set:Default Changelist; class com.intellij.packageDependencies.ChangeListScope">
           <expand>
@@ -145,16 +157,10 @@
               <item name="Fossee" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
-            <path>
-              <item name="Fossee" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="Tasks" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -241,9 +247,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Fossee/Fossee/urls.py" />
-    <entry file="file://$USER_HOME$/Fossee/templates/Teams/teams.html" />
-    <entry file="file://$USER_HOME$/Fossee/Teams/url.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/django/contrib/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -328,11 +331,32 @@
     <entry file="file://$PROJECT_DIR$/Tasks/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/usersAuth/hgh.py" />
     <entry file="file://$PROJECT_DIR$/Tasks/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-310">
+        <state>
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fossee2019/Tasks/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fossee2019/Tasks/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>

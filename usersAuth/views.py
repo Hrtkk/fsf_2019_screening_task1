@@ -1,72 +1,65 @@
-from django.shortcuts import render, render_to_response,HttpResponse, redirect
-from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+from django.shortcuts import render_to_response
 from django.contrib import auth
-from django.utils.decorators import method_decorator
-from django.views.generic import (
-    CreateView,
-    TemplateView,
-)
-from django.contrib.auth.views import (
-    LoginView, LogoutView,
-)
-from .mixins import NextUrlMixin, RequestFormAttachMixin
-from django.views.decorators.csrf import csrf_protect
-from .forms import CustomLoginForm, CustomSignupForm
+# from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from .forms import CustomSignupForm,CustomLoginForm
+from .admin import UserCreationForm
 
-
-# Create your views here.
 
 class CustomLoginView(LoginView):
     form_class = CustomLoginForm
-    template_name = 'usersAuth/login.html'
-    success_url = '/'
-    default_next = '/'
-    # def get(self, request, *args, **kwargs):
-    #     # context = super().get_context_data()
-    #     # context['form'] = self.form_class
-    #
-    #     return render(request,self.template_name,{'form':self.form_class})
+    template_name = 'login.html'
+    success_url = '/userAuth/profile'
+    default_next = '/userAuth/profile'
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        # print(request.COOKIES['csrftoken'])
-        # print(request.POST.get('csrfmiddlewaretoken'))
-        #
-        # # if form.is_valid():
-        email = request.POST.get('email', '')
+        print(request.POST)
+        username = request.POST.get('username','')
         password = request.POST.get('password', '')
-        print(email, password)
-        user = auth.authenticate(email=email, password=password)
-        if user is not None and user.is_active:
-        #     # request.session['']
-        #     # Correct password, and the user is marked "active"
+        user = auth.authenticate(request,username=username, password=password)
+        # print(email, password)
+        print(user)
+        if user is not None:
             auth.login(request, user)
             print("Hey you are logged in")
-            self.user = user
             # Redirect to a success page.
-            return redirect('/')
+            request.session['username'] = username
+            return redirect('/teams/createTeam')
 
-            # return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
-        else:
-            # Show an error page
-            return HttpResponseRedirect("/usersAuth/signup/")
+        return redirect('/userAuth/signup')
 
 
 class CustomSignupView(CreateView):
-    form_class = CustomSignupForm
-    template_name = 'usersAuth/signup.html'
-    success_url = '/'
-    default_next = '/'
+    form_class = UserCreationForm
+    template_name = 'signup.html'
+    success_url = '/userAuth/'
+    default_next = '/login'
+
+    def post(self,request, *args, **kwargs):
+        form = UserCreationForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            print("Form is valid")
+            form.save()
+
+        return redirect('/usersAuth/login')
+
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
+    context = {
+        'hello':'data'
+    }
+
+    def get(self, request, *args, **kwargs):
+        print(request.GET)
+        print("I am in session")
+        print(request.session.keys())
+        print(request.session['username'])
+        return render_to_response(self.template_name,self.context)
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-
-    # def get(self, request, *args, **kwargs):
-
-    #     return
-
-    # def post(self, request, *args, **kwargs):
-
-    #     return
