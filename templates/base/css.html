@@ -5,6 +5,12 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 <style>
+.app{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
 .wrapper{
     display: flex;
     align-items: stretch;
@@ -16,14 +22,13 @@
     flex-direction: column;
     flex : 1 1 auto;
     justify-content: flex-end;
-
     justify-self: flex-end;
     justify-items: flex-end;
     min-height: 100vh;
-    background: #6d7fcc;
+    background: #343a40;
 }
 #left-head{
-   flex: 11 11 auto;
+    flex: 11 11 auto;
     justify-self: flex-end;
 }
 #left-btn{
@@ -44,10 +49,10 @@
 
 #left-sidebar-slidable{
     flex : 1 1 auto;
-    background: #6d7fcc;
-    min-width: 250px;
+    background:#343a40;
+    min-width: 220px;
     color: #fff;
-    max-width: 250px;
+    max-width: 220px;
     min-height: 100vh;
     transition: all 0.5s;
     z-index: 999;
@@ -55,12 +60,15 @@
 
 .content{
     flex : 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 
 #right-sidebar-slidable{
     flex : 1 1 auto;
-    background: #7386D5;
+    background: #343a40;
     color: #fff;
     min-width: 250px;
     max-width: 250px;
@@ -72,16 +80,13 @@
 
 #right-fixed-sidebar{
     flex : 1 1 auto;    
-    background: #7386D5;
+    background: #343a40;
     min-height: 100vh;
 }
 
-
-
-
 #left-sidebar-slidable.active{
     flex : 1 1 auto;
-    background: #6d7fcc;
+    background: #343a40;
     color: #fff;
     min-width: 80px;
     max-width: 80px;
@@ -89,7 +94,7 @@
 
 #right-sidebar-slidable.active{
     flex : 1 1 auto;
-    background: #7386D5;
+    background: #343a40;
     color: #fff;
     min-width: 80px;
     max-width: 80px;
@@ -100,7 +105,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #343a40;
 }
 
 p {
@@ -209,7 +214,7 @@ ul ul a {
 
 #right-sidebar-slidable {
     /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
+    background: #343a40;
     color: #fff;
     transition: all 0.3s;
 }
@@ -232,6 +237,71 @@ ul ul a {
 #right-sidebar-slidable.active .sidebar-header strong {
     display: block;
 }
+
+
+
+
+.scrollbar
+{
+	float: left;
+	height: 200px;
+	width: 220px;
+	background: #343a40;
+	overflow-y: scroll;
+
+}
+
+.scrollbar-right
+{
+    direction: rtl;
+	float: left;
+	height: 500px;
+	width: 250px;
+	background:#343a40;
+	overflow-y: scroll;
+
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+
+}
+
+#wrapper1
+{
+    background: #343a40;
+	text-align: center;
+	width: 200px;
+	margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+.TaskScrollbar{
+   
+	height: 150px;
+	width: 700px;
+	background: #343a40;
+	overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+
+}
+
+#style-2{
+
+}
+.wrapper2{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+
 
 
 </style>

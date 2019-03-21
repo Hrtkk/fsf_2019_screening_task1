@@ -9,8 +9,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.utils.http import is_safe_url
 from django.views.decorators.debug import sensitive_post_parameters
 from django.utils.decorators import method_decorator
-
-# from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from .forms import CustomSignupForm,CustomLoginForm
 from .admin import UserCreationForm
 
@@ -20,19 +18,16 @@ class CustomLoginView(LoginView):
     template_name = 'usersAuth/login.html'
     success_url = '/'
     default_next = '/'
-    # redirect_field_name = REDIRECT_FIELD_NAME
 
     def post(self, request, *args, **kwargs):
         print(request.POST)
         username = request.POST.get('username','')
         password = request.POST.get('password', '')
         user = auth.authenticate(request,username=username, password=password)
-        # print(email, password)
         print(user)
         if user is not None:
             auth.login(request, user)
             print("Hey you are logged in")
-            # Redirect to a success page.
             request.session['username'] = username
             return redirect('/teams/')
 

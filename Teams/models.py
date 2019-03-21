@@ -24,6 +24,7 @@ class Teams(models.Model):
             on_delete=models.CASCADE,
             related_name='AdminTeams',
         )
+    objects = models.Manager()
 
 
 class TeamUserMembership(models.Model):

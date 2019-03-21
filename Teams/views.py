@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.views.generic import CreateView, ListView, DetailView, TemplateView,View
 from .forms import CustomTeamCreationForm, CustomTaskCreateForm
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from .models import Teams, TeamUserMembership, Tasks, TaskUserMembership
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
@@ -23,11 +23,13 @@ def formTeam(request, form):
 
 
 
-def formTask(request, form):
+def formTask(request, form, team_id):
     title = form.cleaned_data['title']
     description = form.cleaned_data['description']
+    status = form.cleaned_data['status']
     taskAdmin = User.objects.filter(email=request.user)[0]
-    T = Tasks(title=title,description=description,teamAdmin=taskAdmin)
+    team = Teams.objects.get(pk=team_id)
+    T = Tasks(title=title,description=description,status=status,teams=team,creator=taskAdmin)
     
     T.save()
     
@@ -41,8 +43,8 @@ class CreateTeams(CreateView):
     default_next = '/userAuth/profile'
     # model = Teams
     # fields = '__all__'
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'form':self.form_class})
+    # def get(self, request, *args, **kwargs):
+    #     return render(request, self.template_name, {'form':self.form_class})
 
     def post(self, request, *args, **kwargs):
         print(request.POST)
@@ -85,21 +87,41 @@ class CreateTask(CreateView):
     success_url = '/teams/'
     default_next = '/'
 
+    def get(self, request, team_id, *args, **kwargs):
+        context = {}
+        team = Teams.objects.filter(pk=team_id)[0]
+        context['team'] = team
+        context['form'] = self.form_class
+        return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, team_id, *args, **kwargs):
         form = CustomTaskCreateForm(request.POST)
+        # print()
         print("Checking form validity")
         if form.is_valid():
-            formTask(request, form)
-            return redirect('/')
+            formTask(request, form, team_id)
+            return redirect('/teams/{}/task/'.format(team_id))
         return redirect('/')
 
 
 class TaskDetailView(DetailView):
     template_name = 'Teams/TaskDetail.html'
-    def get(self, request,idnum=0, *args, **kwargs):
-        print('Hey',idnum)
-        return render(request, self.template_name)
+    def get(self, request, teamId=0, *args, **kwargs):
+        context = {}
+        if request.user.is_authenticated:
+            teamAdmin = User.objects.filter(email=request.user)[0]
+            context['MemberTeams'] = teamAdmin.MemberTeams.all()
+            context['AdminTeams']= teamAdmin.AdminTeams.all()
+            context['user'] = request.user
+        team = Teams.objects.filter(pk=teamId)[0]
+        task = team.Tasks.all()
+        member = team.teamMember.all()
+        print(member)
+    
+        context['tasks'] = task
+        context['team'] = team
+        context['member'] = member
+        return render(request, self.template_name,context)
 
 
 
