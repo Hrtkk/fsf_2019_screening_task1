@@ -21,5 +21,15 @@
         
   
       });
+        $(document).ready(function () {
+    
+        $('#leftSidebarCollapse').on('click', function () {
+            $('#left-sidebar-slidable').toggleClass('active');
+        });
+        $('#rightSidebarCollapse').on('click', function () {
+            $('#right-sidebar-slidable').toggleClass('active');
+        });
+    });
     </script>
+      
     {% endblock extrascripts %}

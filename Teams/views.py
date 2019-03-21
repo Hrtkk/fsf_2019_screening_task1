@@ -2,9 +2,10 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import CreateView, ListView, DetailView, TemplateView,View
 from .forms import CustomTeamCreationForm, CustomTaskCreateForm
 from django.shortcuts import redirect
-from .models import Teams, TeamUserMembership
+from .models import Teams, TeamUserMembership, Tasks, TaskUserMembership
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.shortcuts import HttpResponse
 # from .models import Tasks
 User = get_user_model()
 
@@ -19,7 +20,18 @@ def formTeam(request, form):
         teamMember = User.objects.filter(email=M)[0]
         m1 = TeamUserMembership(teamName=T, teamMember= teamMember)
         m1.save()
-    pass
+
+
+
+def formTask(request, form):
+    title = form.cleaned_data['title']
+    description = form.cleaned_data['description']
+    taskAdmin = User.objects.filter(email=request.user)[0]
+    T = Tasks(title=title,description=description,teamAdmin=taskAdmin)
+    
+    T.save()
+    
+    
     
 
 class CreateTeams(CreateView):
@@ -27,17 +39,15 @@ class CreateTeams(CreateView):
     form_class = CustomTeamCreationForm
     success_url = '/teams/index'
     default_next = '/userAuth/profile'
-
+    # model = Teams
+    # fields = '__all__'
     def get(self, request, *args, **kwargs):
-        print("Hello")
         return render(request, self.template_name, {'form':self.form_class})
 
     def post(self, request, *args, **kwargs):
         print(request.POST)
         form = CustomTeamCreationForm(request.POST)
-        print("Hey i am checking form")
         if form.is_valid():
-            print("Form is valid")
             formTeam(request, form)
         return redirect('/teams/')
 
@@ -70,24 +80,26 @@ class IndexView(TemplateView):
 
 
 class CreateTask(CreateView):
-    template_name = 'Task/TaskCreation.html'
+    template_name = 'Teams/taskCreatePop.html'
     form_class = CustomTaskCreateForm
-    success_url = '/'
+    success_url = '/teams/'
+    default_next = '/'
+
 
     def post(self, request, *args, **kwargs):
         form = CustomTaskCreateForm(request.POST)
+        print("Checking form validity")
         if form.is_valid():
-        #     title = form.cleaned_data['title']
-        #     description = form.cleaned_data['description']
-        #     status = form.cleaned_data['status']
-        #     task = Tasks(title=title,description=description,status=status)
-        #     task.save()
-            return redirect('/home/')
-        return redirect('/task/')
+            formTask(request, form)
+            return redirect('/')
+        return redirect('/')
 
 
 class TaskDetailView(DetailView):
-    template_name = 'Task/TaskDetail.html'
+    template_name = 'Teams/TaskDetail.html'
+    def get(self, request,idnum=0, *args, **kwargs):
+        print('Hey',idnum)
+        return render(request, self.template_name)
 
 
 

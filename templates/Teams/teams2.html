@@ -1,0 +1,146 @@
+{% include 'base_layout.html' %}
+{% block Team %}
+<div class="wrapper">
+    <nav id="left-Sidebar" style="background-color: #343a40">
+        <div class="sidebar-footer">   
+            <button type="button" id="leftSidebarCollapse" class="btn btn-info">
+                <i class="fa fa-align-left"></i>
+            </button>
+        </div>
+    </nav>
+    <nav id="leftSidebar">
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
+                <strong>BS</strong>
+            </div>
+    
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-home"></i>
+                        Home
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Home 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-briefcase"></i>
+                        About
+                    </a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-copy"></i>
+                        Pages
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    <div class="content">
+        <!-- Page Content  -->
+        <div class="container-fluid">
+            <div class="row teams-view">
+                <div class="col-2" id="sidebar-wrapper">
+                    <div class="col">
+                        <div>
+                            <ul class="sidebar-nav">
+                                <li> <a href="">Home</a></li>
+                                <li><a href="">Profile</a></li>
+                                <li><a href="">Settings</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                        
+                            {% if user.is_authenticated %}
+                            <h4>AdminTeams</h4>
+                            {% for item in AdminTeams %}
+                                
+                                <div>
+                                    <a href="/teams/{{item.id}}/task" style="color: cyan">{{item.title}}</a>
+                                </div>
+                            {% endfor %}
+                            <br>
+                            <h4>MemberTeams</h4>
+                            {% for item in MemberTeams %}
+                            <div>
+                                <a href="/teams/{{item.id}}/task" style="color: cyan">{{item.title}}</a>
+                            </div>
+                            {% endfor %}
+                            <br>
+                            <br>
+                            
+                            <button type="submit" style="border-radius: 20px; color: lightslategrey"class=" create-team-btn"><span>+</span>Create Teams</button>        
+                        
+
+
+                            {% endif %}
+                        </div>
+                    
+
+                    </div>
+                </div>   
+                <div class="col-8" id="page-content-wrapper">
+                        <div class="row">
+                            <ul>
+                                <li>Tasks</li>
+                                <button type="submit" class="btn-dark create-task-btn"><span>+</span>Create Task</button>
+                            </ul>
+
+                        </div>
+                </div>
+                <div class="col-2" id="sidebar-wrapper">
+                        <div class="col">
+                            <div>
+                                <ul class="sidebar-nav">
+                                    <li> <a href="">Home</a></li>
+                                    <li><a href="">Profile</a></li>
+                                    <li><a href="">Settings</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <nav id="rightSidebar" style="background-color: cyan">
+        <div class="sidebar-header">
+            <h3>Hello</h3>
+        </div>
+    </nav>
+
+    <nav id="rightSidebar1">
+        <div class="sidebar-footer">
+            <button type="button" id="rightSidebarCollapse" class="btn btn-info">
+                <i class="fa fa-align-left"></i>
+            </button>
+        </div>
+    </nav>
+</div>
+
+{% endblock Team %}
+<div class="footer">
+    {% include "_footer.html" %}
+</div>

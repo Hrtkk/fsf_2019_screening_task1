@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Fossee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'fossee2019',
+        'NAME': 'fossee19',
     }
 }
 
