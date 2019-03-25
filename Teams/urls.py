@@ -13,7 +13,9 @@ urlpatterns = [
     path(r'<int:teamId>/task/', views.TaskDetailView.as_view(), name='TaskDetail'),
     path(r'<int:team_id>/task/createTask/', views.CreateTask.as_view(), name='CreateTask'),
     path('task/taskDetail/', views.TaskDetailView.as_view(), name='TaskDetail'),
-    
+    path(r'<int:team_id>/task/<int:task_id>/update', views.UpdateTask.as_view(), name='UpdateTask'),
+    path(r'<int:team_id>/task/(?P<pk>[\w]+)/delete', views.DeleteTask.as_view(), name='DeleteTask'),
+    path(r'<int:team_id>/task/<int:task_id>/comment', views.CommentTask.as_view(), name='CommentTask'),
     
 ]
 

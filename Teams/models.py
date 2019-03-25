@@ -12,8 +12,8 @@ STATUS_CHOICES = (
 
 
 class Teams(models.Model):
-    title       = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    title       = models.CharField(max_length = 255)
+    description = models.CharField(max_length = 255)
     teamMember  = models.ManyToManyField(
             User,
             through='TeamUserMembership',
@@ -28,15 +28,15 @@ class Teams(models.Model):
 
 
 class TeamUserMembership(models.Model):
-    teamMember  = models.ForeignKey(User, on_delete=models.CASCADE)
-    teamName    = models.ForeignKey(Teams, on_delete=models.CASCADE)
+    teamMember  = models.ForeignKey(User, on_delete = models.CASCADE)
+    teamName    = models.ForeignKey(Teams, on_delete = models.CASCADE)
     date        = models.DateTimeField()
 
 
 class Tasks(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    status = models.CharField(max_length=255, choices=STATUS_CHOICES)
+    title = models.CharField(max_length = 255)
+    description = models.CharField(max_length = 255)
+    status = models.CharField(max_length=255, choices = STATUS_CHOICES)
     teams = models.ForeignKey(
             Teams,
             on_delete=models.CASCADE,
@@ -52,10 +52,24 @@ class Tasks(models.Model):
             through='TaskUserMembership',
             related_name='TasksMember'
         )
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.title
 
 
 class TaskUserMembership(models.Model):
-    taskMember  = models.ForeignKey(User, on_delete=models.CASCADE)
-    taskName    = models.ForeignKey(Tasks, on_delete=models.CASCADE)
+    taskMember  = models.ForeignKey(User, on_delete = models.CASCADE)
+    taskName    = models.ForeignKey(Tasks, on_delete = models.CASCADE)
     date        = models.DateTimeField()
+
+
+class Comments(models.Model):
+    comments = models.TextField(max_length=255)
+    author   = models.CharField(max_length=255)
+    task     = models.ForeignKey(
+        Tasks, 
+        related_name='comments',
+        on_delete = models.CASCADE
+        )
 

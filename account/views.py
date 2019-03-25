@@ -1,7 +1,7 @@
 from django.views.generic import CreateView, TemplateView, View, RedirectView, FormView
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.contrib.auth import logout as auth_logout, REDIRECT_FIELD_NAME, login as auth_login
 from django.contrib import auth
 from django.views.decorators.cache import never_cache
@@ -11,11 +11,12 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.utils.decorators import method_decorator
 from .forms import CustomSignupForm,CustomLoginForm
 from .admin import UserCreationForm
+from .mixins import NextUrlMixin, RequestFormAttachMixin
+from django.conf import settings
 
-
-class CustomLoginView(LoginView):
+class CustomLoginView(LoginView,NextUrlMixin, RequestFormAttachMixin):
     form_class = CustomLoginForm
-    template_name = 'usersAuth/login.html'
+    template_name = 'registration/login.html'
     success_url = '/'
     default_next = '/'
 
@@ -23,20 +24,21 @@ class CustomLoginView(LoginView):
         print(request.POST)
         username = request.POST.get('username','')
         password = request.POST.get('password', '')
-        user = auth.authenticate(request,username=username, password=password)
+        user = auth.authenticate(request, username=username, password=password)
         print(user)
         if user is not None:
             auth.login(request, user)
             print("Hey you are logged in")
             request.session['username'] = username
-            return redirect('/teams/')
+            return HttpResponseRedirect('/')
 
         return redirect('/')
 
 
+
 class CustomSignupView(CreateView):
     form_class = UserCreationForm
-    template_name = 'usersAuth/signup.html'
+    template_name = 'registration/signup.html'
     success_url = '/teams/'
     default_next = '/teams/'
 
@@ -50,16 +52,16 @@ class CustomSignupView(CreateView):
         return redirect('/teams')
 
 class ProfileView(TemplateView):
-    template_name = 'usersAuth/profile.html'
+    template_name = 'registration/profile.html'
     context = {
         'hello':'data'
     }
 
     def get(self, request, *args, **kwargs):
-        print(request.GET)
-        print("I am in session")
-        print(request.session.keys())
-        print(request.session['username'])
+        # print(request.GET)
+        # print("I am in session")
+        # print(request.session.keys())
+        # print(request.session['username'])
         return render_to_response(self.template_name,self.context)
 
 

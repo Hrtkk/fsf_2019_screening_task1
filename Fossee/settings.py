@@ -27,8 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/teams/'
-# LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGOUT_REDIRECT_URL = '/teams/'
+
 
 # Application definition
 
@@ -39,14 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'usersAuth',
-    'Tasks',
+    'account',
     'Teams',
     'widget_tweaks',
     'bootstrap_modal_forms'
 ]
 
-AUTH_USER_MODEL = 'usersAuth.MyUser'           # will change built in user model to custom user
+AUTH_USER_MODEL = 'account.MyUser'           # will change built in user model to custom user
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,8 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

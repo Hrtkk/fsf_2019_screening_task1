@@ -9,11 +9,11 @@ from django.views.generic import RedirectView
 app_name='Fossee'
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url='/teams/'),name='index'),
-    path('teams/tasksID/',include('Tasks.urls',namespace='Tasks')),
+    url(r'^$', RedirectView.as_view(url='home/'),name='index'),
+    path('home/',views.index, name='home'),
     path('teams/',include('Teams.urls',namespace='Teams')),
-    path('usersAuth/',include('usersAuth.urls',namespace='Accounts')),
+    path('accounts/',include('account.urls',namespace='Accounts')),
     url('admin/', admin.site.urls),
-    path('usersAuth/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

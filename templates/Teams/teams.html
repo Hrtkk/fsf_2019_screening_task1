@@ -7,8 +7,8 @@
             
             <div class="ullist" style="color: white;">
                 <ul class="list-unstyled components">
-                    <li class="active"> <a href="#homeSubmenu"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
-                    <li><a href="#"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
+                    <li class="active"> <a href="/home"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
+                    <li><a href="/teams"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
                     <li> <a href="#pageSubmenu"><i class="fa fa-copy" style="font-size: 35px; margin: 15px;"></i></a></li>
                     <li> <a href="#"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
                     <li> <a href="#"><i class="fa fa-plus create-task-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
@@ -138,7 +138,6 @@
                             <br><br>                  
                         {% endif %}
                     </div>
-             
         </div>
                 
         <div class="wrapper2 Done">
@@ -165,7 +164,6 @@
                             <br><br>    
                         {% endif %}
                 </div>
-           
         </div>
     </div>
 
@@ -190,7 +188,6 @@
                     </div>
                 </div>
             </div>
-
         </nav>
     </div>
 
@@ -202,9 +199,15 @@
             </button>
         </nav>
     </div>
-
-
 </div>
+<script>
+
+    $(function(){
+        $(".create-task-btn").modalForm({formURL: "{% url 'Teams:CreateTask' team.id %}"});
+    });
+
+</script>
+
 
 
 {% endblock Team %}

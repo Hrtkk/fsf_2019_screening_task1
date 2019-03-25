@@ -1,0 +1,11 @@
+{% for comment in comments %}
+{{ comment.comments }} <p>by</p>{{ comment.author }} 
+<hr>
+{% endfor %}
+
+
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
