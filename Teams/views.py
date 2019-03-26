@@ -164,6 +164,8 @@ class CommentTask(CreateView):
     
 
 class DeleteTask(DeleteView):
+    model = Tasks
+
     def get_object(self, queryset=None):
         """ Hook to ensure object is owned by request.user. """
         obj = super(DeleteTask, self).get_object()
@@ -175,9 +177,11 @@ class DeleteTask(DeleteView):
         return reverse('Teams:teamsView')
     
 
+
 class UpdateTask(UpdateView):
     model = Tasks
     fields = ['status']
     template_name_suffix = '_update_form'
+    success_url = '/teams'
     
 

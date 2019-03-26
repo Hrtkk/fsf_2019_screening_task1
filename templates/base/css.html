@@ -18,31 +18,16 @@
 }
 
 #left-fixed-sidebar{
-    display: flex;
-    flex-direction: column;
     flex : 1 1 auto;
-    justify-content: flex-end;
-    justify-self: flex-end;
-    justify-items: flex-end;
     min-height: 100vh;
     background: #343a40;
-}
-#left-head{
-    flex: 11 11 auto;
-    justify-self: flex-end;
-}
-#left-btn{
-    flex: 1 1 auto;
-    justify-self: flex-end;
-    align-self: center;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
 }
 
 
 #leftSidebarCollapse{
     margin: 4px;
 }
+
 #rightSidebarCollapse{
     margin: 4px;
 }
@@ -90,6 +75,8 @@
     color: #fff;
     min-width: 80px;
     max-width: 80px;
+    margin-right: 25px;
+    padding-right: 25px;
 }
 
 #right-sidebar-slidable.active{
@@ -122,7 +109,6 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
-
 #left-sidebar-slidabler .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
@@ -152,8 +138,6 @@ a, a:hover, a:focus {
     color: #fff;
     background: #6d7fcc;
 }
-
-
 
 ul ul a {
     font-size: 0.9em !important;
@@ -208,10 +192,6 @@ ul ul a {
 }
 
 
-
-
-
-
 #right-sidebar-slidable {
     /* don't forget to add all the previously mentioned styles here too */
     background: #343a40;
@@ -223,8 +203,6 @@ ul ul a {
     padding: 20px;
     background: #6d7fcc;
 }
-
-
 
 
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
@@ -239,8 +217,6 @@ ul ul a {
 }
 
 
-
-
 .scrollbar
 {
 	float: left;
@@ -250,6 +226,17 @@ ul ul a {
 	overflow-y: scroll;
 
 }
+
+.scrollbar.active
+{
+	float: left;
+	height: 200px;
+	width: 20px;
+	background: #343a40;
+	overflow-y: scroll;
+
+}
+
 
 .scrollbar-right
 {
@@ -267,39 +254,63 @@ ul ul a {
 	min-height: 450px;
 }
 
-.force-overflow
-{
-	min-height: 450px;
 
-}
-
-#wrapper1
-{
+#left-sidebar-slidable.active #wrapper-1.active{
     background: #343a40;
-	text-align: center;
-	width: 200px;
-	margin: auto;
+	text-align: left;
+	width: 50px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    transition-delay: 0.5s;
 }
+
+
+
+#left-sidebar-slidable #wrapper-1 h4{
+    display : block;
+}
+#left-sidebar-slidable.active #wrapper-1.active h3{
+    display: block;
+}
+#left-sidebar-slidable.active #wrapper-1.active h4{
+    display: none;
+}
+#left-sidebar-slidable #wrapper-1 h3{
+    display: none;
+}
+
+
 .TaskScrollbar{
-   
 	height: 150px;
 	width: 700px;
 	background: #343a40;
 	overflow-x: scroll;
     display: flex;
     flex-direction: row;
-
 }
 
-#style-2{
 
-}
 .wrapper2{
     margin-left: 20px;
     margin-bottom: 20px;
 }
+
+#style-1.active{
+    margin-right: 15px;
+    padding-right: 15px;
+    width: 100px;
+    transition-delay: all 0.5s;
+}
+
+#style-2.active{
+    margin-right: 15px;
+    padding-right: 15px;
+    width: 100px;
+    transition-delay: all 0.5s;
+}
+
+
+
 
 
 

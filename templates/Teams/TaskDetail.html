@@ -4,22 +4,14 @@
     <div class="left-sidebar-fixed" id="">
         <nav id="left-fixed-sidebar">
             <div id="left-head">
-            
-            <div class="ullist" style="color: white;">
-                <ul class="list-unstyled components">
-                    <li class="active"> <a href="#homeSubmenu"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
-                    <li><a href="#"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
-                    <li> <a href="#pageSubmenu"><i class="fa fa-copy" style="font-size: 35px; margin: 15px;"></i></a></li>
-                    <li> <a href="#"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
-                    <li> <a href="#"><i class="fa fa-plus create-task-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
-                  
-                </ul>
-            </div>
-            </div>
-                <div id="left-btn">
-                <button type="button" id="leftSidebarCollapse" class="btn btn-info">
-                    <i class="fa fa-align-left"></i>
-                </button>
+                <div class="ullist" style="color: white;">
+                    <ul class="list-unstyled components">
+                        <li><button type="button" id="leftSidebarCollapse" class="btn btn-info"><i class="fa fa-align-left"></i></button></li>
+                        <li class="active"><a href="/home" data-toggle="tooltip" data-placement="top" title="Home"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
+                        <li><a href="/teams" data-toggle="tooltip" data-placement="top" title="Teams"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
+                        <li> <a href="#" data-toggle="tooltip" data-placement="top" title="Create Team"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
@@ -29,21 +21,20 @@
             <div class="sidebar-header">
                 <h3>FOSSEE</h3>
                 <strong>FOSE</strong>
-               
             </div>
-
-
-        <div class="wrapper1">
-                <h4>AdminTeams</h4>
-        <div class="scrollbar" id="style-1">
-            <div class="force-overflow">
-                    {% if user.is_authenticated %}
-                   
-                    {% for item in AdminTeams %}   
-                    <div>
+            <div class="wrapper1" id="wrapper-1">
+                <div class="sidebar-wrapper-header">
+                    <h4>AdminTeams</h4>
+                    <h3>Ad. T.</h3>
+                </div>
+                <div class="scrollbar" id="style-1">
+                    <div class="force-overflow">
+                        {% if user.is_authenticated %}
+                        {% for item in AdminTeams %}   
+                        <div class="c">
                             <div class="card" style="width: 12rem;color:#343a40;border: none;">
                                 <div class="card-body" style="background-color:#343a40;">
-                                    <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
+                                    <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;color: white;"></i>{{item.title}}</a>
                                 </div>
                             </div>                  
                         </div>
@@ -51,33 +42,28 @@
                         {% endif %}
                     </div>
                 </div>
-
-
-                <div class="wrapper1">
+                
+                <div class="sidebar-wrapper-header">
                     <h4>MemberTeams</h4>
-                    <div class="scrollbar" id="style-1">
-                        <div class="force-overflow">
-                                {% if user.is_authenticated %}
-                                    
-                                    {% for item in MemberTeams %}
-                                    <div>
-                                        <div class="card" style="width: 12rem;color:#343a40;border: none;">
-                                            <div class="card-body" style="background-color:#343a40;">
-                                                <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
-                                            </div>
-                                        </div>                  
-                                    </div>
-                                    {% endfor %}
-                                    <br>
-                                    <br>
-                                    
-                                    {% endif %}
+                    <h3>Mem T.</h3>
+                </div>
+                <div class="scrollbar" id="style-2">
+                    <div class="force-overflow">
+                        {% if user.is_authenticated %}
+                        {% for item in MemberTeams %}
+                        <div>
+                            <div class="card" style="width: 12rem;color:#343a40;border: none;">
+                                <div class="card-body" style="background-color:#343a40;">
+                                    <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
                                 </div>
-                            </div>
+                            </div>                  
                         </div>
-
+                        {% endfor %}
+                        <br>
+                        <br>                   
+                        {% endif %}
                     </div>
-                 <div>
+                </div>
             </div>
         </nav>
     </div>
@@ -85,12 +71,11 @@
     
     <div class="content" id="">
     <div class="content-header" style="background:#343a40;">
-        <a href="#" class="create-task-btn"><i class="fa fa-plus" style="font-size: 35px; margin: 15px;"></i></a>
+        <a href="#" class="create-task-btn" data-toggle="tooltip" data-placement="top" title="Create Task" ><i class="fa fa-plus" style="font-size: 35px; margin: 15px;color: white;"></i></a>
     </div>
 
     <div class="wrapper2 Planning">
         <div class="task-header" style="background:#343a40; color: white;"><h4>Task Planning</h4></div>
-        
         <div class="TaskScrollbar" id="style-2">
                     {% if user.is_authenticated %}    
                         {% for item in tasks %}
