@@ -13,109 +13,13 @@
                 </div>
             </div>
         </nav>
-    </div>
-
-    <div class="left-sidebar-toggler" id="">
-        <nav id="left-sidebar-slidable">
-            <div class="sidebar-header">
-                <h3>FOSSEE</h3>
-                <strong>FOSE</strong>
-               
-            </div>
-
-
-        <div class="wrapper1">
-                <h4>AdminTeams</h4>
-        <div class="scrollbar" id="style-1">
-            <div class="force-overflow">
-                    {% if user.is_authenticated %}
-                   
-                    {% for item in AdminTeams %}   
-                    <div>
-                            <div class="card" style="width: 12rem;color:#343a40;border: none;">
-                                <div class="card-body" style="background-color:#343a40;">
-                                    <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
-                                </div>
-                            </div>                  
-                        </div>
-                        {% endfor %} 
-                        {% endif %}
-                    </div>
-                </div>
-
-
-                <div class="wrapper1">
-                    <h4>MemberTeams</h4>
-                    <div class="scrollbar" id="style-1">
-                        <div class="force-overflow">
-                                {% if user.is_authenticated %}
-                                    
-                                    {% for item in MemberTeams %}
-                                    <div>
-                                        <div class="card" style="width: 12rem;color:#343a40;border: none;">
-                                            <div class="card-body" style="background-color:#343a40;">
-                                                <a href="/teams/{{item.id}}/task" style="color: cyan"><i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
-                                            </div>
-                                        </div>                  
-                                    </div>
-                                    {% endfor %}
-                                    <br>
-                                    <br>
-                                    
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                 <div>
-            </div>
-        </nav>
-    </div>
-
+    </div> 
     
     <div class="content" id="">
-    <div class="content-header" style="background:#343a40;">
-        <a href="" class="create-task-btn"><i class="fa fa-plus" style="font-size: 35px; margin: 15px;"></i></a>
-    </div>
+    
 
  
     </div>
-
-    <div class="right-sidebar-toggler" id="">
-        <nav id="right-sidebar-slidable">
-            <div class="sidebar-header">
-                <h3>FOSSEE</h3>
-                <strong>FOSE</strong>
-            </div>
-          
-            <div class="wrapper1">
-                <div class="scrollbar-right" id="style-1">
-                    <div class="force-overflow">
-                        {% for m in member %}
-                        <div class="card" style="width: 8rem;color: white;background:#343a40;">
-                            <div class="card-body">
-                                {{m.username }}                            
-                            </div>
-                            </div>
-                        <hr>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <div class="right-sidebar-fixed" id="">
-        <nav id="right-fixed-sidebar">
-            
-            <button type="button" id="rightSidebarCollapse" class="btn btn-info">
-                <i class="fa fa-align-left"></i>
-            </button>
-        </nav>
-    </div>
-</div>
-
 
 
 {% endblock Team %}

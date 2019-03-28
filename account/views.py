@@ -1,11 +1,9 @@
 from django.views.generic import CreateView, TemplateView, View, RedirectView, FormView
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django.shortcuts import render_to_response, render, HttpResponseRedirect
+from django.shortcuts import render_to_response, render, HttpResponseRedirect, HttpResponse
 from django.contrib.auth import logout as auth_logout, REDIRECT_FIELD_NAME, login as auth_login
 from django.contrib import auth
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
 from django.utils.http import is_safe_url
 from django.views.decorators.debug import sensitive_post_parameters
 from django.utils.decorators import method_decorator
@@ -18,20 +16,18 @@ from django.conf import settings
 class CustomLoginView(LoginView,NextUrlMixin, RequestFormAttachMixin):
     form_class = CustomLoginForm
     template_name = 'registration/login.html'
-    success_url = '/'
-    default_next = '/'
 
     def post(self, request, *args, **kwargs):
-        print(request.POST)
+        # print(request.POST)
         username = request.POST.get('username','')
         password = request.POST.get('password', '')
         user = auth.authenticate(request, username=username, password=password)
-        print(user)
+        # print(user)
         if user is not None:
             auth.login(request, user)
-            print("Hey you are logged in")
             request.session['username'] = username
-            return HttpResponseRedirect('/')
+            # print("Hey you are logged in")
+            return HttpResponseRedirect('/teams/')
 
         return redirect('/')
 
@@ -41,15 +37,16 @@ class CustomSignupView(CreateView):
     template_name = 'registration/signup.html'
     success_url = '/teams/'
     success_message = 'User registered successfully'
-    default_next = '/teams/'
 
     def post(self,request, *args, **kwargs):
         form = UserCreationForm(request.POST)
         # print(request.POST)
+        # print('request to create user')
         if form.is_valid():
             # print("Form is valid")
             form.save()
-        return redirect('/teams/')
+
+        return HttpResponseRedirect('/teams/')
 
 
 class ProfileView(TemplateView):
@@ -59,10 +56,6 @@ class ProfileView(TemplateView):
     }
 
     def get(self, request, *args, **kwargs):
-        # print(request.GET)
-        # print("I am in session")
-        # print(request.session.keys())
-        # print(request.session['username'])
         return render_to_response(self.template_name,self.context)
 
 

@@ -68,8 +68,9 @@ class Comments(models.Model):
     comments = models.TextField(max_length=255)
     author   = models.CharField(max_length=255)
     task     = models.ForeignKey(
-        Tasks, 
-        related_name='comments',
-        on_delete = models.CASCADE
+            Tasks, 
+            related_name='comments',
+            on_delete = models.CASCADE
         )
+    objects = models.Manager()
 
