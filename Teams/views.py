@@ -22,8 +22,8 @@ def formTeam(request, form):
     T.save()
     for M in form.cleaned_data['members']:
         teamMember = User.objects.filter(email=M)[0]
-        print('hello')
-        print(teamMember.username)
+        # print('hello')
+        # print(teamMember.username)
         m1 = TeamUserMembership(teamName=T, teamMember= teamMember)
         m1.save()
 
@@ -58,8 +58,11 @@ class CreateTeams(LoginRequiredMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         form = CustomTeamCreationForm(request.POST, request=request)
+        
         if form.is_valid():
+            print('yes form is valid')
             formTeam(request, form)
+        print(form.errors)
         return redirect('/teams/')
 
 
@@ -98,7 +101,8 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
     def get(self, request, team_id, *args, **kwargs):
         context = {}
-        team = Teams.objects.filter(pk=team_id)[0]
+        team = Teams.objects.get(pk=team_id)
+        # print(Teams.objects.get(id=team_id))
         form_class = CustomTaskCreateForm(request.GET, request=request, team=team)
         context['team'] = team
         context['form'] = form_class
@@ -107,10 +111,10 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
     def post(self, request, team_id, *args, **kwargs):
         form = CustomTaskCreateForm(request.POST, request=request)
-        print("Checking form validity")
         if form.is_valid():
             formTask(request, form, team_id)
             return  redirect('/teams/{}/task/'.format(team_id))
+        print(form.errors)
         return redirect('/')
 
 
@@ -130,7 +134,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
         context['tasks'] = task
         context['team'] = team
         context['member'] = member
-        print(task)
+        # print(task)
         return render(request, self.template_name, context)
 
 
@@ -145,20 +149,21 @@ class CommentTask(LoginRequiredMixin, CreateView):
         context['form'] = self.form_class
         com = Tasks.objects.filter(id=task_id)[0]
         context['comments'] = com.comments.all()
-        print(com.comments.all())
+        # print(com.comments.all())
         return render(request, self.template_name, context)
 
 
     def post(self, request, teamId=0, task_id=0, *args, **kwargs):
         form = CommentsForm(request.POST)
+        # print('comment is processing!!')
         if form.is_valid():
             comment = form.cleaned_data['comments']
             t = Tasks.objects.get(pk=task_id)
             Com = Comments(task=t, comments=comment, author = request.user)
             Com.save()
-            print(task_id)
-            print('comments saved')
-            return redirect('/teams')
+            # print(task_id)
+            # print('comments saved')
+            return redirect('/teams/')
         return redirect('/')
 
     

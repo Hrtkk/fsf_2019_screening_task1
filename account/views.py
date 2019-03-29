@@ -11,6 +11,9 @@ from .forms import CustomSignupForm,CustomLoginForm
 from .admin import UserCreationForm
 from .mixins import NextUrlMixin, RequestFormAttachMixin
 from django.conf import settings
+from django.contrib import messages
+from django.http import JsonResponse
+from .mixins import AjaxFormMixin
 
 
 class CustomLoginView(LoginView,NextUrlMixin, RequestFormAttachMixin):
@@ -32,7 +35,7 @@ class CustomLoginView(LoginView,NextUrlMixin, RequestFormAttachMixin):
         return redirect('/')
 
 
-class CustomSignupView(CreateView):
+class CustomSignupView(AjaxFormMixin, CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = '/teams/'
@@ -41,13 +44,16 @@ class CustomSignupView(CreateView):
     def post(self,request, *args, **kwargs):
         form = UserCreationForm(request.POST)
         # print(request.POST)
-        # print('request to create user')
+        print('request to create user')
         if form.is_valid():
-            # print("Form is valid")
+            print("Form is valid")
             form.save()
-
-        return HttpResponseRedirect('/teams/')
-
+            return HttpResponseRedirect('/teams/')
+        else :
+            messages.error(request, "Error")
+        return render_to_response(self.template_name,{'form':form})
+    
+   
 
 class ProfileView(TemplateView):
     template_name = 'registration/profile.html'

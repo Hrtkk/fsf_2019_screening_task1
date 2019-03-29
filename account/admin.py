@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+# from django.contrib.auth.forms import UserCreationForm
 from .models import MyUser
 
 
@@ -33,9 +33,9 @@ class UserCreationForm(forms.ModelForm):
             user.save()
         return user
 
-    # def __init__(self, request, *args, **kwargs):
-    #     self.request = request
-    #     super(UserCreationForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        # self.request = request
+        super(UserCreationForm, self).__init__(*args, **kwargs)
 
 
 class UserChangeForm(forms.ModelForm):

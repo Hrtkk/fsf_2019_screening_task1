@@ -19,3 +19,5 @@ class CustomLoginForm(forms.Form):
     def __init__(self, request, *args, **kwargs):
         self.request = request
         super(CustomLoginForm, self).__init__(*args, **kwargs)
+
+

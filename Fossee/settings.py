@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     'account',
     'Teams',
     'widget_tweaks',
-    'bootstrap_modal_forms'
+    'bootstrap_modal_forms',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'account.MyUser'           # will change built in user model to custom user
 
 MIDDLEWARE = [
