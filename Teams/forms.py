@@ -41,7 +41,10 @@ CHOICES = (
 
 
 class CustomTaskCreateForm(forms.ModelForm):
-    Assigned =  forms.ModelChoiceField(queryset=User.objects.all())
+    Assigned =  forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
     class Meta:
         model = Tasks
         fields = ['title','description','status']

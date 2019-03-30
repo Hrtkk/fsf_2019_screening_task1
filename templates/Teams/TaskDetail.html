@@ -70,9 +70,18 @@
 
     
     <div class="content" id="">
+        {% if team.teamAdmin.id == user.id %}
     <div class="content-header" style="background:#343a40;">
-        <a href="#" class="create-task-btn" data-toggle="tooltip" data-placement="top" title="Create Task" ><i class="fa fa-plus" style="font-size: 35px; margin: 15px;color: white;"></i></a>
-    </div>
+            <ul style="display: flex; flex-direction: row;justify-content: center">
+                <h4 style="color:wheat; padding-right: 20px;margin-top: 15px;">create task</h4>
+                <a href="#" class="create-task-btn" data-toggle="tooltip" data-placement="top" title="Create Task" ><i class="fa fa-plus" style="font-size: 35px; margin: 15px;color: white;"></i></a>
+            </ul>
+        </div>
+    {% else %}
+    <div class="content-header" style="background:#343a40;padding-top: 5px;;padding-bottom: 20px;">
+        <h5 style="color:wheat">You can only view and comment on task</h5>
+    </div>    
+    {% endif %}
 
     <div class="wrapper2 Planning">
         <div class="task-header" style="background:#343a40; color: white;"><h4>Task Planning</h4></div>
@@ -83,12 +92,23 @@
                             <div class="" style="width: 300px; background: #343a40;">
                                     <div class="card" style="width: 250px;color:#343a40;">
                                         <div class="card-header" style="background: #343a40;">
-                                            <a href="{% url 'Teams:CommentTask' team.id  item.id %}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
-                                            <a href="{% url 'Teams:UpdateTask' team.id item.id %}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                            <a href="{% url 'Teams:DeleteTask' team.id item.id %}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                               
+                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                                {% if item.creator == user %}
+                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                                {% endif %} <script type="text/javascript">
+                                                    $(function(){
+                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                  
+                                                    });
+                                                  
+                                                  </script>
                                         </div>
                                         <div class="card-body" style="background-color:#343a40;">
-                                            <a href="/teams/{{item.id}}/task" style="color: cyan">{{item.title}}</a>
+                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
                                         </div>
                                     </div>                  
                                 </div>
@@ -105,26 +125,37 @@
         
                 <div class="TaskScrollbar" id="style-2">
                    
-                        {% if user.is_authenticated %}
-                            {% for item in tasks %}
+                    {% if user.is_authenticated %}
+                        {% for item in tasks %}
                             {% if item.status == 'Progressing' %}
-                            <div class="" style="width: 300px; background: #343a40;">
-                                <div class="card" style="width: 250px;color:#343a40;">
-                                    <div class="card-header" style="background: #343a40;">
-                                        <a href="{% url 'Teams:CommentTask' team.id item.id %}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
-                                        <a href="{% url 'Teams:UpdateTask' team.id item.id %}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                        <a href="{% url 'Teams:DeleteTask' team.id item.id %}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
-                                    </div>
-                                    <div class="card-body" style="background-color:#343a40;">
-                                        <a href="/teams/{{item.id}}/task" style="color: cyan">{{item.title}}</a>
-                                    </div>
-                                </div>                  
-                            </div>
-                                {% endif %}
-                            {% endfor %}
-                            <br><br>                  
-                        {% endif %}
-                    </div>
+                                <div class="" style="width: 300px; background: #343a40;">
+                                    <div class="card" style="width: 250px;color:#343a40;">
+                                        <div class="card-header" style="background: #343a40;">
+                                            
+                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                                {% if item.creator == user %}
+                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                                {% endif %}
+                                                <script type="text/javascript">
+                                                    $(function(){
+                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                  
+                                                    });
+                                                  
+                                                  </script>                                        </div>
+                                        <div class="card-body" style="background-color:#343a40;">
+                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
+                                        </div>
+                                    </div>                  
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <br><br>                  
+                    {% endif %}
+                </div>
              
         </div>
                 
@@ -139,12 +170,26 @@
                             <div class="" style="width: 300px; background: #343a40;">
                                     <div class="card" style="width: 250px;color:#343a40;">
                                         <div class="card-header" style="background: #343a40;">
-                                                <a href="{% url 'Teams:CommentTask' team.id item.id %}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
-                                                <a href="{% url 'Teams:UpdateTask' team.id item.id %}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                                <a href="{% url 'Teams:DeleteTask' team.id item.id %}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
-                                        </div>
+                                                
+                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                                {% if item.creator == user %}
+                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                                {% endif %} <script type="text/javascript">
+                                                    $(function(){
+                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                  
+                                                    });
+                                                  
+                                                  </script>
+                                   
+                                   
+                                            </div>
                                         <div class="card-body" style="background-color:#343a40;">
-                                            <a href="/teams/{{item.id}}/task" style="color: cyan">{{item.title}}</a>
+                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
+                                            <p>{{item.Assign}}</p>
                                         </div>
                                     </div>                  
                                 </div>
@@ -166,13 +211,20 @@
             <div class="wrapper1">
                 <div class="scrollbar-right" id="style-1">
                     <div class="force-overflow">
-                        {% for m in member %}
-                        <div class="card" style="width: 8rem;color: white;background:#343a40;">
-                            <div class="card-body">
-                                {{m.username }}                            
-                            </div>
-                            </div>
-                        <hr>
+                        {% for item in member %}
+                        <div class="" style="width: 200px;height: 80px;  margin:20px; background: #343a40;">
+                            <div class="card" style="width: 200px;height: 80px; color:#343a40;">
+                                    {% if team.id == user.id %}
+                                <div class="card-header" style="height: 40px;background: #343a40;">
+                                        <a href="{% url 'Teams:DeleteTask' team.id item.id %}"><i class="fa fa-trash" style="font-size: 20px;margin-right: 14px;float:right;color:white;"></i></a>
+                                </div>
+                                {% endif %}
+                                <div class="card-body" style=" margin-top:0px; background-color:#343a40;">
+                                    <a href="/teams/{{team.id}}" style="color: cyan">{{item.username}}</a>
+                                    <a href="/teams/{{team.id}}" style="color: cyan">{{item.email}}</a>
+                                </div>
+                            </div>                  
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -195,8 +247,8 @@
 
 <script type="text/javascript">
     $(function(){
-      $(".create-task-btn").modalForm({formURL: "{% url 'Teams:CreateTask' team.id %}"});
-  
+        $(".create-task-btn").modalForm({formURL: "{% url 'Teams:CreateTask' team.id %}"});
+     
     });
   
   </script>

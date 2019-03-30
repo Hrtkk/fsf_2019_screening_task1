@@ -37,6 +37,10 @@ def formTask(request, form, team_id):
     team = Teams.objects.get(pk=team_id)
     T = Tasks(title=title,description=description,status=status,teams=team,creator=taskAdmin)
     T.save()
+    for M in form.cleaned_data['Assigned']:
+        Worker = User.objects.get(email=M)
+        m1 = TaskUserMembership(taskName=T, taskMember= Worker)
+        m1.save()
     
     
 class CreateTeams(LoginRequiredMixin, CreateView):
@@ -66,22 +70,9 @@ class CreateTeams(LoginRequiredMixin, CreateView):
         return redirect('/teams/')
 
 
-class TeamListView(LoginRequiredMixin, ListView):
-    template_name = 'Teams/teamList.html'
-    login_url = '/home/'
-    def get(self, request, *args, **kwargs):
-        pass
-
-
-class TeamDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'teamDetail.html'
-    login_url = '/home/'
-    def get(self, request, *args, **kwargs):
-        pass
-
 
 class IndexView(LoginRequiredMixin, TemplateView):
-    template_name = 'Teams/TeamIndex.html'
+    template_name = 'Teams/TeamIndex.html'          # 2
     login_url = '/home/'
     def get(self, request, *args, **kwargs):
         context = super().get_context_data()
@@ -119,11 +110,11 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'Teams/TaskDetail.html'
+    template_name = 'Teams/TaskDetail.html'             # 3
     login_url = '/home/'
-    def get(self, request, teamId=0, *args, **kwargs):
+    def get(self, request, team_id=0, *args, **kwargs):
         context = {}
-        team = Teams.objects.filter(pk=teamId)[0]
+        team = Teams.objects.filter(pk=team_id)[0]
         task = team.Tasks.all()
         member = team.teamMember.all()
         if request.user.is_authenticated:
@@ -144,7 +135,7 @@ class CommentTask(LoginRequiredMixin, CreateView):
     success_url = '/teams'
     login_url = '/home/'
 
-    def get(self, request, teamId=0, task_id=0, *args, **kwargs):
+    def get(self, request, team_id=0, task_id=0, *args, **kwargs):
         context = {}
         context['form'] = self.form_class
         com = Tasks.objects.filter(id=task_id)[0]
@@ -153,7 +144,7 @@ class CommentTask(LoginRequiredMixin, CreateView):
         return render(request, self.template_name, context)
 
 
-    def post(self, request, teamId=0, task_id=0, *args, **kwargs):
+    def post(self, request, team_id=0, task_id=0, *args, **kwargs):
         form = CommentsForm(request.POST)
         # print('comment is processing!!')
         if form.is_valid():
@@ -178,10 +169,23 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
             raise Http404
         return obj
     
-    def get_success_url(self):
-        return reverse('Teams:teamsView')
-    
+    def get_success_url(self, team_id):
+        return '/teams/{}/task'.format(team_id)
 
+    def delete(self, request,team_id, *args, **kwargs):
+        """
+        Call the delete() method on the fetched object and then redirect to the
+        success URL.
+        """
+        self.object = self.get_object()
+        success_url = self.get_success_url(team_id)
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+    # Add support for browsers which only accept GET and POST for now.
+    def post(self, request, team_id, pk, *args, **kwargs):
+        return self.delete(request, team_id, *args, **kwargs)
+    
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     login_url = '/home/'
@@ -189,5 +193,16 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
     fields = ['status']
     template_name_suffix = '_update_form'
     success_url = '/teams'
+
+
+def Task_DetailView(self, request,team_id, pk):
+    template_name = 'Teams/TasksView.html'
+    # model = Tasks
+
+    print('Hello')
+    # def get(self, request, team_id, pk, *args, **kwargs):
+    #     context = {}
+    #     context['data'] = Tasks.objects.get(id=pk)
+    return render(request, self.template_name)
     
 

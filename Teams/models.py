@@ -65,7 +65,7 @@ class TaskUserMembership(models.Model):
 
 
 class Comments(models.Model):
-    comments = models.TextField(max_length=255)
+    comments = models.CharField(max_length=255,)
     author   = models.CharField(max_length=255)
     task     = models.ForeignKey(
             Tasks, 
