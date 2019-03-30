@@ -37,3 +37,11 @@ Team Admin can create their task, delete the task, update, review the task and c
     8. Members of particular team can only view tasks and comment on the task. 
 
 ### Want to contribute
+
+    Feel free to fork and send pull request and also do not forget to inform me before sending pull request and have a conversation on your contribution 
+
+
+
+### For Testing
+
+    python3 manage.py test
