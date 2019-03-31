@@ -34,7 +34,7 @@ class Teams(models.Model):
 class TeamUserMembership(models.Model):
     teamMember  = models.ForeignKey(User, on_delete = models.CASCADE)
     teamName    = models.ForeignKey(Teams, on_delete = models.CASCADE)
-    date        = models.DateTimeField()
+    date        = models.DateTimeField(auto_now=True, null=True)
     objects = models.Manager()
 
 
@@ -73,7 +73,7 @@ class TaskUserMembership(models.Model):
     # Task and user relationship 
     taskMember  = models.ForeignKey(User, on_delete = models.CASCADE)
     taskName    = models.ForeignKey(Tasks, on_delete = models.CASCADE)
-    date        = models.DateTimeField()
+    date        = models.DateTimeField(auto_now=True, null=True)
 
 
 class Comments(models.Model):
