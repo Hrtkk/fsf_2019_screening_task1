@@ -1,7 +1,7 @@
 # fsf_2019_screening_task1
 
 
-![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-31%2012-40-11.png)
 
 ### This Task Management software enables you to keep track of your day to day task which you are working in group and letting your team mates effectively work and reveal the progress of their work done son far.
 
@@ -51,8 +51,7 @@ Team Admin can create their task, delete the task, update, review the task and c
 
 
 ### Some more images
-![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
-![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
-![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
-![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-31%2012-28-05.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-31%2012-31-20.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-31%2012-40-55.png)
 
