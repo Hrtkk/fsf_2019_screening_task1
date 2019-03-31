@@ -6,7 +6,6 @@
             <div id="left-head">
                 <div class="ullist" style="color: white;">
                     <ul class="list-unstyled components">
-                        <li><button type="button" id="leftSidebarCollapse" class="btn btn-info"><i class="fa fa-align-left"></i></button></li>
                         <li class="active"><a href="/home" data-toggle="tooltip" data-placement="top" title="Home"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
                         <li><a href="/teams" data-toggle="tooltip" data-placement="top" title="Teams"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
                         <li> <a href="#" data-toggle="tooltip" data-placement="top" title="Create Team"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
@@ -18,16 +17,13 @@
 
     <div class="left-sidebar-toggler" id="">
         <nav id="left-sidebar-slidable">
-            <div class="sidebar-header">
-                <h3>FOSSEE</h3>
-                <strong>FOSE</strong>
-            </div>
+           
             <div class="wrapper1" id="wrapper-1">
-                <div class="sidebar-wrapper-header">
+                <div class="sidebar-wrapper-header" style="margin:15px;">
                     <h4>AdminTeams</h4>
-                    <h3>Ad. T.</h3>
+                   
                 </div>
-                <div class="scrollbar" id="style-1">
+                <div class="scrollbar" id="style-3">
                     <div class="force-overflow">
                         {% if user.is_authenticated %}
                         {% for item in AdminTeams %}   
@@ -43,11 +39,11 @@
                     </div>
                 </div>
                 
-                <div class="sidebar-wrapper-header">
+                <div class="sidebar-wrapper-header" style="margin:15px;">
                     <h4>MemberTeams</h4>
-                    <h3>Mem T.</h3>
+                  
                 </div>
-                <div class="scrollbar" id="style-2">
+                <div class="scrollbar" id="style-3">
                     <div class="force-overflow">
                         {% if user.is_authenticated %}
                         {% for item in MemberTeams %}
@@ -92,23 +88,25 @@
                             <div class="" style="width: 300px; background: #343a40;">
                                     <div class="card" style="width: 250px;color:#343a40;">
                                         <div class="card-header" style="background: #343a40;">
-                                               
-                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                                <a href="#" class="comment-task-btn-{{item.id}}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
                                                 {% if item.creator == user %}
-                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
-                                                {% endif %} <script type="text/javascript">
-                                                    $(function(){
-                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
-                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
-                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
-                                                  
-                                                    });
-                                                  
-                                                  </script>
+                                                    <a href="#" class="update-task-btn-{{item.id}}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                    <a href="#" class="delete-task-btn-{{item.id}}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                                {% endif %} 
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                    $(".comment-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                    $(".update-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                    $(".delete-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                
+                                                });        
+                                            </script>
+                                   
                                         </div>
                                         <div class="card-body" style="background-color:#343a40;">
-                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
+                                            <a href="#" style="color: cyan">{{item.title}}</a>
+                                            <hr>
+                                            <a href="#" style="color: cyan">{{item.description}}</a>
                                         </div>
                                     </div>                  
                                 </div>
@@ -131,24 +129,26 @@
                                 <div class="" style="width: 300px; background: #343a40;">
                                     <div class="card" style="width: 250px;color:#343a40;">
                                         <div class="card-header" style="background: #343a40;">
-                                            
-                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                            <a href="#" class="comment-task-btn-{{item.id}}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
                                                 {% if item.creator == user %}
-                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
-                                                {% endif %}
-                                                <script type="text/javascript">
-                                                    $(function(){
-                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
-                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
-                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
-                                                  
-                                                    });
-                                                  
-                                                  </script>                                        </div>
+                                                    <a href="#" class="update-task-btn-{{item.id}}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                    <a href="#" class="delete-task-btn-{{item.id}}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                                {% endif %} 
+                                            <script type="text/javascript">
+                                                $(function(){
+                                                    $(".comment-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                    $(".update-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                    $(".delete-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                
+                                                });        
+                                            </script>
+                                   
+                                       </div>
                                         <div class="card-body" style="background-color:#343a40;">
-                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
-                                        </div>
+                                                <a href="#" style="color: cyan">{{item.title}}</a>
+                                                <hr>
+                                                <a href="#" style="color: cyan">{{item.description}}</a>
+                                            </div>
                                     </div>                  
                                 </div>
                             {% endif %}
@@ -171,15 +171,15 @@
                                     <div class="card" style="width: 250px;color:#343a40;">
                                         <div class="card-header" style="background: #343a40;">
                                                 
-                                                <a href="#" class="comment-task-btn"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
-                                                {% if item.creator == user %}
-                                                <a href="#" class="update-task-btn"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
-                                                <a href="#" class="delete-task-btn"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
-                                                {% endif %} <script type="text/javascript">
+                                                <a href="#" class="comment-task-btn-{{item.id}}"><i class="fa fa-book" style="font-size: 25px;margin-right: 30px;float:left; color:white;"></i></a>
+                                            {% if item.creator == user %}
+                                                <a href="#" class="update-task-btn-{{item.id}}"><i class="fa fa-edit" style="font-size: 25px;margin-left: 40px;color:white;"></i></a>
+                                                <a href="#" class="delete-task-btn-{{item.id}}"><i class="fa fa-trash" style="font-size: 25px;margin-right: 14px;float:right;color:white;"></i></a>
+                                            {% endif %} <script type="text/javascript">
                                                     $(function(){
-                                                       $(".comment-task-btn").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
-                                                        $(".update-task-btn").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
-                                                        $(".delete-task-btn").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
+                                                       $(".comment-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:CommentTask' team.id item.id %}"});
+                                                        $(".update-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:UpdateTask' team.id item.id %}"});
+                                                        $(".delete-task-btn-{{item.id}}").modalForm({formURL: "{% url 'Teams:DeleteTask' team.id item.id %}"});
                                                   
                                                     });
                                                   
@@ -187,10 +187,11 @@
                                    
                                    
                                             </div>
-                                        <div class="card-body" style="background-color:#343a40;">
-                                            <a href="/teams/{{team.id}}/task/{{item.id}}/taskDetail/" style="color: cyan">{{item.title}}</a>
-                                            <p>{{item.Assign}}</p>
-                                        </div>
+                                            <div class="card-body" style="background-color:#343a40;">
+                                                    <a href="#" style="color: cyan">{{item.title}}</a>
+                                                    <hr>
+                                                    <a href="#" style="color: cyan">{{item.description}}</a>
+                                                </div>
                                     </div>                  
                                 </div>
                                 {% endif %}
@@ -204,7 +205,7 @@
 
     <div class="right-sidebar-toggler" id="">
         <nav id="right-sidebar-slidable">
-            <div class="sidebar-header">
+            <div class="sidebar-header" style="margin: 15px;">
                 <h3>Team Members</h3>
             </div>
           
@@ -233,16 +234,7 @@
         </nav>
     </div>
 
-    <div class="right-sidebar-fixed" id="">
-        <nav id="right-fixed-sidebar">
-            
-            <button type="button" id="rightSidebarCollapse" class="btn btn-info">
-                <i class="fa fa-align-left"></i>
-            </button>
-        </nav>
-    </div>
-
-
+    
 </div>
 
 <script type="text/javascript">

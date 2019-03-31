@@ -7,7 +7,6 @@
                 <div id="left-head">
                     <div class="ullist" style="color: white;">
                         <ul class="list-unstyled components">
-                            <li><button type="button" id="leftSidebarCollapse" class="btn btn-info"><i class="fa fa-align-left"></i></button></li>
                             <li class="active"><a href="/home" data-toggle="tooltip" data-placement="top" title="Home"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
                             <li><a href="/teams" data-toggle="tooltip" data-placement="top" title="Teams"><i class="fa fa-briefcase" style="font-size: 35px; margin: 15px;"></i></a></li>
                             <li> <a href="#" data-toggle="tooltip" data-placement="top" title="Create Team"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
@@ -26,10 +25,12 @@
                         {% if user.is_authenticated %}
                             {% for item in AdminTeams %}   
                             <div>
-                                <div class="card" style="width: 12rem;color:#343a40;border: none;">
+                                <div class="card" style="width: 18rem;color:#343a40;border: none;">
                                     <div class="card-body" style="background-color:#343a40;">
                                         <a href="/teams/{{item.id}}/task" style="color: cyan">
-                                            <i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
+                                            <i class="fa fa-user" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
+                                        <a href="/teams/{{item.id}}/deleteTeam" class="delete-task-btn">
+                                            <i class="fa fa-trash" style="font-size: 25px;margin-right: 0px;float:right;color:white;"></i></a>
                                     </div>
                                 </div>                  
                             </div>
@@ -46,10 +47,12 @@
                         {% if user.is_authenticated %} 
                             {% for item in MemberTeams %}
                             <div>
-                                <div class="card" style="width: 12rem;color:#343a40;border: none;">
+                                <div class="card" style="width: 18rem;color:#343a40;border: none;">
                                     <div class="card-body" style="background-color:#343a40;">
                                         <a href="/teams/{{item.id}}/task" style="color: cyan">
                                             <i class="fa fa-user create-team-btn" style="font-size: 25px;margin-right: 4px;"></i>{{item.title}}</a>
+                                        <a href="/teams/{{item.id}}/LeaveTeam" class="delete-task-btn">
+                                            <i class="fa fa-sign-out" style="font-size: 25px;margin-right: 0px;float:right;color:white;"></i></a>
                                     </div>
                                 </div>                  
                             </div>

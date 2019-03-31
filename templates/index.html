@@ -4,6 +4,7 @@
     <div class="left-sidebar-fixed" id="">
         <nav id="left-fixed-sidebar">
             <div id="left-head">
+                {% if user.is_authenticated %}
                 <div class="ullist" style="color: white;">
                     <ul class="list-unstyled components">
                         <li class="active"> <a href="/home" data-toggle="tooltip" data-placement="top" title="Home"><i class="fa fa-home" style="font-size: 35px; margin: 15px;"></i></a></li>
@@ -11,16 +12,38 @@
                         <li> <a href="#" data-toggle="tooltip" data-placement="top" title="Create Team"><i class="fa fa-plus create-team-btn" style="font-size: 35px; margin: 15px;"></i></a></li>
                     </ul>
                 </div>
+                {% endif %}
             </div>
         </nav>
     </div> 
     
-    <div class="content" id="">
-        <h3>Welcome !!!</h3>
-        <h4>This is a simple projects screening task for FOSSEE IITB </h4>
-    
-
- 
+    <div class="content" id="home-content">
+            <div class="card" id="card-home">
+                <div class="card-header">
+                    <h3>Welcom !!!</h3>
+                    <h5>Task Manager Application</h5>
+                </div>
+                
+                <div class="card-body">
+                    <p>This application let's you create your team and further on create tasks for 
+                        your team and keep track of your tasks.
+                    </p>
+                        <hr>
+                    <p>    
+                        To start working on the app you have to first <strong>create your account then login again</strong>
+                        to get to your section of your app.
+                    </p>
+                    <hr>
+                    <p>
+                        After creating your account go to team section on the left sidebar of your screen where second option<i class="fa fa-briefcase" style="font-size: 35px; margin: 5px;"></i> will get you to your team section.
+                    </p>
+                    <p>Third part with plus sign <i class="fa fa-plus" style="font-size: 35px; margin: 5px;"></i>will allow you to create teams with members showing their email id of all those who are currently registered user</p>
+                </div>
+                
+                <div class="card-footer">
+                    <h4>Thanks !!!</h4>
+                </div>
+            </div>
     </div>
 
 

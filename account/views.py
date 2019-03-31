@@ -17,38 +17,40 @@ from .mixins import AjaxFormMixin
 
 
 class CustomLoginView(LoginView,NextUrlMixin, RequestFormAttachMixin):
-    form_class = CustomLoginForm
-    template_name = 'registration/login.html'
+    """
+        customizing the login process by rendering custom login form
+    """
+    form_class = CustomLoginForm                # login form
+    template_name = 'registration/login.html'   # login template to be rendered
 
     def post(self, request, *args, **kwargs):
+        # post method which will accept the post request of the given form when user will click lohin button of form
         # print(request.POST)
         username = request.POST.get('username','')
         password = request.POST.get('password', '')
-        user = auth.authenticate(request, username=username, password=password)
-        # print(user)
+        user = auth.authenticate(request, username=username, password=password)         # extracting user from database if uer is available it will return user object otherwise will return None
+      
         if user is not None:
-            auth.login(request, user)
-            request.session['username'] = username
-            # print("Hey you are logged in")
-            return HttpResponseRedirect('/teams/')
+            auth.login(request, user)           # django buildin auth.login method for log a user in 
+            request.session['username'] = username          # putting username in user session
+            return HttpResponseRedirect('/teams/')          # redirecting user to /teams/
 
         return redirect('/')
 
 
 class CustomSignupView(AjaxFormMixin, CreateView):
-    form_class = UserCreationForm
+    """ Custom signup view class """
+    form_class = UserCreationForm           
     template_name = 'registration/signup.html'
     success_url = '/teams/'
     success_message = 'User registered successfully'
 
     def post(self,request, *args, **kwargs):
+        # post method of the class to handle post request by user during signing up
         form = UserCreationForm(request.POST)
-        # print(request.POST)
-        print('request to create user')
-        if form.is_valid():
-            print("Form is valid")
+        if form.is_valid():     # checking form validity
             form.save()
-            return HttpResponseRedirect('/teams/')
+            return HttpResponseRedirect('/home/')
         else :
             messages.error(request, "Error")
         return render_to_response(self.template_name,{'form':form})
@@ -66,6 +68,7 @@ class ProfileView(TemplateView):
 
 
 class LogoutView(RedirectView):
+    """ Log a user out and refirecting him to home page """
     url = '/'
 
     def get(self, request, *args, **kwargs):

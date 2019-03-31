@@ -23,6 +23,7 @@ class NextUrlMixin(object):
 
 
 class AjaxFormMixin(object):
+    """ Ajax form mixin to ajaxify the forms so that forms can render forms errors without refreshing the page. """
     def form_invalid(self, form):
         response = super(AjaxFormMixin, self).form_invalid(form)
         if self.request.is_ajax():
