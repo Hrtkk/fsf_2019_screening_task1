@@ -24,7 +24,10 @@ Team Admin can create their task, delete the task, update, review the task and c
 
 
 2. Running the application
-    * `Python3 manage.py runserver`
+    * `python3 manage.py makemigrations`
+    * `python3 manage.py migrate`           making database ready
+    * `Python3 manage.py runserver`         start server
+    * `Now go to http://127.0.0.1:8000/`
 
 ### Features
     1. User Registration and Login.
@@ -45,3 +48,11 @@ Team Admin can create their task, delete the task, update, review the task and c
 ### For Testing
 
     python3 manage.py test
+
+
+### Some more images
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+![alt text](https://github.com/Eagle732/fsf_2019_screening_task1/blob/master/static/assets/images/Screenshot%20from%202019-03-29%2020-03-47.png)
+
