@@ -199,11 +199,6 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
     success_url = '/teams'
 
 
-def Task_DetailView(self, request,team_id, pk):
-    template_name = 'Teams/TasksView.html'
-    return render(request, self.template_name)
-    
-
 class LeaveTeam(LoginRequiredMixin, View):
     template_name = 'Teams/LeaveTeam.html'
     login_url = '/home/'
@@ -218,37 +213,6 @@ class LeaveTeam(LoginRequiredMixin, View):
         t1 = TeamUserMembership.objects.filter(teamMember=request.user).filter(teamName=Teams.objects.get(id=team_id))
         t1.delete()
         return HttpResponseRedirect('/teams/')
-    
-
-
-# class (LoginRequiredMixin, DeleteView):
-    # model = TeamUserMembership
-    # login_url = '/home/'
-    # def get_object(self, queryset=None):
-    #     """ Hook to ensure object is owned by request.user. """
-    #     obj = super(DeleteTask, self).get_object()
-    #     if not obj.creator == self.request.user:
-    #         raise Http404
-    #     return obj
-    
-    # def get_success_url(self, team_id):
-    #     return '/teams/{}/task'.format(team_id)
-
-    # def delete(self, request,team_id, *args, **kwargs):
-    #     """
-    #     Call the delete() method on the fetched object and then redirect to the
-    #     success URL.
-    #     """
-    #     self.object = self.get_object()
-    #     success_url = self.get_success_url(team_id)
-    #     self.object.delete()
-    #     return HttpResponseRedirect(success_url)
-
-    # # Add support for browsers which only accept GET and POST for now.
-    # def post(self, request, team_id, pk, *args, **kwargs):
-    #     return self.delete(request, team_id, *args, **kwargs)
-    
-    pass
 
 
 class deleteTeam(LoginRequiredMixin, DeleteView):
