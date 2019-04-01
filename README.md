@@ -15,6 +15,8 @@ Team Admin can create their task, delete the task, update, review the task and c
 ## Following are the prerequisite for the projects which you have to install before start working on project.
 ## Installation
 
+[Documentation](documentation.pdf)
+
 1. **Local Installation**
     * `pip install -r requirements.txt`
 
